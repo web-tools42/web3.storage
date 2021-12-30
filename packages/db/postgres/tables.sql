@@ -200,17 +200,6 @@ CREATE TABLE IF NOT EXISTS pin_sync_request
 
 CREATE INDEX IF NOT EXISTS pin_sync_request_pin_id_idx ON pin_sync_request (pin_id);
 
--- A migration tracker.
-CREATE TABLE IF NOT EXISTS migration_tracker
-(
-  id              BIGSERIAL PRIMARY KEY,
-  cid             TEXT                                                          NOT NULL,
-  duration        BIGINT,
-  dump_started_at TIMESTAMP WITH TIME ZONE,
-  dump_ended_at   TIMESTAMP WITH TIME ZONE NOT NULL,
-  inserted_at     TIMESTAMP WITH TIME ZONE DEFAULT timezone('utc'::text, now()) NOT NULL
-);
-
 CREATE TABLE IF NOT EXISTS name
 (
     -- base36 "libp2p-key" encoding of the public key
